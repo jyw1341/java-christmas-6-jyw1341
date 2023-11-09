@@ -5,18 +5,16 @@ import christmas.enums.Menu;
 import christmas.enums.MenuType;
 import christmas.order.Orders;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Set;
 
 import static christmas.enums.DayOfWeek.SUNDAY;
 import static christmas.enums.DayOfWeek.THURSDAY;
 
-public class WeekdayEvent {
+public class WeekdayEvent extends Event {
 
     public static final int WEEKDAY_DISCOUNT = 2_023;
-    public static final int EVENT_LIMIT = 10_000;
 
+    @Override
     public Integer getBenefit(Orders orders) {
         if (orders.getTotalOrderAmount() < EVENT_LIMIT) {
             return 0;
@@ -29,12 +27,5 @@ public class WeekdayEvent {
             result = dessertCount * WEEKDAY_DISCOUNT;
         }
         return result;
-    }
-
-    private DayOfWeek getToday(Date date) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-        return DayOfWeek.getToday(dayOfWeek);
     }
 }
