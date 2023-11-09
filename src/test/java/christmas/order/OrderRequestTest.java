@@ -64,7 +64,7 @@ class OrderRequestTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"양송이스프-1a", "양송이스프--1", "양송이스프_1", "양송이스프#1", "양송이스프 1-"})
+    @ValueSource(strings = {"양송이스프-1-1", "양송이스프-1a", "양송이스프--1", "양송이스프_1", "양송이스프#1", "양송이스프 1-"})
     @DisplayName("주문 입력이 형식에 맞지 않으면 예외처리한다.")
     public void testSetMenu4(String input) {
         OrderRequest orderRequest = new OrderRequest();

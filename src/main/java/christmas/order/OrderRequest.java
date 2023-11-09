@@ -1,6 +1,7 @@
 package christmas.order;
 
 import christmas.enums.Menu;
+import utils.RegexExpression;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,7 +10,7 @@ import java.util.Date;
 import java.util.EnumMap;
 import java.util.List;
 
-import static christmas.Validator.*;
+import static utils.Validator.*;
 
 public class OrderRequest {
 
@@ -59,12 +60,12 @@ public class OrderRequest {
         validateIsNotBlank(input, ERROR_INVALID_MENU);
         List<String> menus = new ArrayList<>();
         for (String menuAndAmount : input.split(INPUT_SEPARATOR)) {
-            validateCorrectFormat(menuAndAmount, "^[가-힣a-zA-Z]+-\\d+$", ERROR_INVALID_MENU);
+            validateCorrectFormat(menuAndAmount, RegexExpression.WORD_DASH_NUMBER, ERROR_INVALID_MENU);
             String[] parts = menuAndAmount.split(MENU_SEPARATOR);
             String menu = parts[0];
             menus.add(menu);
             String amount = parts[1];
-            validateCorrectFormat(amount, "^[1-9]\\d*$", ERROR_INVALID_MENU);
+            validateCorrectFormat(amount, RegexExpression.NUMBER_GREATER_THAN_1, ERROR_INVALID_MENU);
             validateExistMenu(menu);
         }
         validateIsElementUnique(menus, ERROR_INVALID_MENU);
