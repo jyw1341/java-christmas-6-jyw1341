@@ -1,7 +1,7 @@
 package christmas.enums;
 
 public enum EventType {
-    D_DAY(1_200, "크리스마스 디데이 할인"),
+    D_DAY(1_000, "크리스마스 디데이 할인"),
     WEEKDAY(2_023, "평일 할인"),
     WEEKEND(2_023, "주말 할인"),
     SPECIAL(1_000, "특별 할인"),
