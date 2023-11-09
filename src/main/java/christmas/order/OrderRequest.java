@@ -2,13 +2,13 @@ package christmas.order;
 
 import christmas.enums.Menu;
 import christmas.enums.MenuType;
-import utils.RegexExpression;
+import christmas.utils.RegexExpression;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import static utils.Validator.*;
+import static christmas.utils.Validator.*;
 
 public class OrderRequest {
 

@@ -1,4 +1,4 @@
-package utils;
+package christmas.utils;
 
 public class RegexExpression {
     public static final String NUMBER_GREATER_THAN_1 = "^[1-9]\\d*$";
