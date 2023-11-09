@@ -25,8 +25,8 @@ public class WeekdayEvent extends Event {
         DayOfWeek today = getToday(orders.getDate());
         if (today.getCount() >= SUNDAY.getCount() && today.getCount() <= THURSDAY.getCount()) {
             Set<Menu> menus = orders.getMenu().keySet();
-            int dessertCount = (int) menus.stream().filter((menu) -> menu.getType().equals(MenuType.DESSERTS)).count();
-            result.put(EventType.WEEKDAY, dessertCount * EventType.WEEKDAY.getBenefit());
+            int count = (int) menus.stream().filter((menu) -> menu.getType().equals(MenuType.DESSERTS)).count();
+            result.put(EventType.WEEKDAY, count * EventType.WEEKDAY.getBenefit());
         }
         return result;
     }
