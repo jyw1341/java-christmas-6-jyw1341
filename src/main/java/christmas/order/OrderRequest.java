@@ -21,7 +21,7 @@ public class OrderRequest {
     public static final int MIN_DATE = 1;
     public static final int MAX_DATE = 31;
     private Date date;
-    private EnumMap<Menu, Integer> menu;
+    private Map<Menu, Integer> menu;
 
     public Date getDate() {
         return date;
@@ -40,13 +40,13 @@ public class OrderRequest {
         validateNumberInRange(input, MIN_DATE, MAX_DATE, ERROR_INVALID_DATE);
     }
 
-    public EnumMap<Menu, Integer> getMenu() {
+    public Map<Menu, Integer> getMenu() {
         return menu;
     }
 
     public void setMenu(String input) {
         validateMenuInput(input);
-        EnumMap<Menu, Integer> result = new EnumMap<>(Menu.class);
+        Map<Menu, Integer> result = new EnumMap<>(Menu.class);
         for (String menuAndAmount : input.split(INPUT_SEPARATOR)) {
             String[] parts = menuAndAmount.split(MENU_SEPARATOR);
             Menu menu = Menu.findMenu(parts[0]);
@@ -71,12 +71,12 @@ public class OrderRequest {
         validateIsElementUnique(menus, ERROR_INVALID_MENU);
     }
 
-    private void validateMenuEventConditions(EnumMap<Menu, Integer> menus) {
+    private void validateMenuEventConditions(Map<Menu, Integer> menus) {
         validateOnlyBeverage(menus);
         validateOverMaxOrder(menus);
     }
 
-    private void validateOnlyBeverage(EnumMap<Menu, Integer> menus) {
+    private void validateOnlyBeverage(Map<Menu, Integer> menus) {
         Set<Menu> menuSet = menus.keySet();
         long beverageCount = menuSet.stream().filter((menu) -> menu.getType().equals(MenuType.BEVERAGES)).count();
         if (menuSet.size() == beverageCount) {
@@ -84,7 +84,7 @@ public class OrderRequest {
         }
     }
 
-    private void validateOverMaxOrder(EnumMap<Menu, Integer> menus) {
+    private void validateOverMaxOrder(Map<Menu, Integer> menus) {
         int total = menus.values().stream().mapToInt(Integer::intValue).sum();
         if (total > 20) {
             throw new IllegalArgumentException(ERROR_OVER_MAX_ORDER);
