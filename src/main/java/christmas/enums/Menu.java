@@ -1,5 +1,7 @@
 package christmas.enums;
 
+import static christmas.order.OrderRequest.ERROR_INVALID_MENU;
+
 public enum Menu {
 
     MUSHROOM_SOUP(MenuType.APPETIZERS, "양송이수프", 6_000),
@@ -43,6 +45,6 @@ public enum Menu {
                 return menu;
             }
         }
-        return null;
+        throw new IllegalArgumentException(ERROR_INVALID_MENU);
     }
 }

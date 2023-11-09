@@ -59,21 +59,14 @@ public class OrderRequest {
     private void validateMenu(String input) {
         validateIsNotBlank(input, ERROR_INVALID_MENU);
         List<String> menus = new ArrayList<>();
-        for (String menuAndAmount : input.split(INPUT_SEPARATOR)) {
-            validateCorrectFormat(menuAndAmount, RegexExpression.WORD_DASH_NUMBER, ERROR_INVALID_MENU);
-            String[] parts = menuAndAmount.split(MENU_SEPARATOR);
-            String menu = parts[0];
+        for (String menuAmountPair : input.split(INPUT_SEPARATOR)) {
+            validateCorrectFormat(menuAmountPair, RegexExpression.WORD_DASH_NUMBER, ERROR_INVALID_MENU);
+            String[] menuAndAmount = menuAmountPair.split(MENU_SEPARATOR);
+            String menu = menuAndAmount[0];
             menus.add(menu);
-            String amount = parts[1];
+            String amount = menuAndAmount[1];
             validateCorrectFormat(amount, RegexExpression.NUMBER_GREATER_THAN_1, ERROR_INVALID_MENU);
-            validateExistMenu(menu);
         }
         validateIsElementUnique(menus, ERROR_INVALID_MENU);
-    }
-
-    private void validateExistMenu(String name) {
-        if (Menu.findMenu(name) == null) {
-            throw new IllegalArgumentException(ERROR_INVALID_MENU);
-        }
     }
 }
