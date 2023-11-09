@@ -1,5 +1,6 @@
 package christmas.event;
 
+import christmas.enums.EventType;
 import christmas.order.OrderRequest;
 import christmas.order.Orders;
 import org.junit.jupiter.api.DisplayName;
@@ -8,8 +9,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.text.ParseException;
+import java.util.Map;
 
-import static christmas.event.WeekdayEvent.WEEKDAY_DISCOUNT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class WeekdayEventTest {
@@ -24,8 +25,8 @@ class WeekdayEventTest {
         orderRequest.setDate(day);
         Orders order = new Orders(orderRequest);
         WeekdayEvent weekdayEvent = new WeekdayEvent();
-        int result = weekdayEvent.getBenefit(order);
-        assertEquals(WEEKDAY_DISCOUNT, result);
+        Map<EventType, Integer> result = weekdayEvent.getBenefit(order);
+        assertEquals(EventType.WEEKDAY.getBenefit(), result.get(EventType.WEEKDAY));
     }
 
     @Test
@@ -36,8 +37,8 @@ class WeekdayEventTest {
         orderRequest.setDate("1"); //12월 1일은 금요일이다.
         Orders order = new Orders(orderRequest);
         WeekdayEvent weekdayEvent = new WeekdayEvent();
-        int result = weekdayEvent.getBenefit(order);
-        assertEquals(0, result);
+        Map<EventType, Integer> result = weekdayEvent.getBenefit(order);
+        assertEquals(0, result.get(EventType.WEEKDAY));
     }
 
     @ParameterizedTest
@@ -49,7 +50,7 @@ class WeekdayEventTest {
         orderRequest.setDate(day);
         Orders order = new Orders(orderRequest);
         WeekdayEvent weekdayEvent = new WeekdayEvent();
-        int result = weekdayEvent.getBenefit(order);
-        assertEquals(0, result);
+        Map<EventType, Integer> result = weekdayEvent.getBenefit(order);
+        assertEquals(0, result.get(EventType.WEEKDAY));
     }
 }

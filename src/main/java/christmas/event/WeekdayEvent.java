@@ -1,10 +1,13 @@
 package christmas.event;
 
 import christmas.enums.DayOfWeek;
+import christmas.enums.EventType;
 import christmas.enums.Menu;
 import christmas.enums.MenuType;
 import christmas.order.Orders;
 
+import java.util.EnumMap;
+import java.util.Map;
 import java.util.Set;
 
 import static christmas.enums.DayOfWeek.SUNDAY;
@@ -12,19 +15,18 @@ import static christmas.enums.DayOfWeek.THURSDAY;
 
 public class WeekdayEvent extends Event {
 
-    public static final int WEEKDAY_DISCOUNT = 2_023;
-
     @Override
-    public Integer getBenefit(Orders orders) {
+    public Map<EventType, Integer> getBenefit(Orders orders) {
+        Map<EventType, Integer> result = new EnumMap<>(EventType.class);
+        result.put(EventType.WEEKDAY, 0);
         if (orders.getTotalOrderAmount() < EVENT_LIMIT) {
-            return 0;
+            return result;
         }
-        int result = 0;
         DayOfWeek today = getToday(orders.getDate());
         if (today.getCount() >= SUNDAY.getCount() && today.getCount() <= THURSDAY.getCount()) {
             Set<Menu> menus = orders.getMenu().keySet();
             int dessertCount = (int) menus.stream().filter((menu) -> menu.getType().equals(MenuType.DESSERTS)).count();
-            result = dessertCount * WEEKDAY_DISCOUNT;
+            result.put(EventType.WEEKDAY, dessertCount * EventType.WEEKDAY.getBenefit());
         }
         return result;
     }
