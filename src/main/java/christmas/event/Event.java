@@ -20,7 +20,7 @@ public abstract class Event {
     public abstract EventType getType();
 
     protected DayOfWeek getToday(Date date) {
-        return DayOfWeek.getToday(getDayOfWeek(date));
+        return DayOfWeek.getDay(getDayOfWeek(date));
     }
 
     protected boolean shouldSkipEvent(Orders orders) {

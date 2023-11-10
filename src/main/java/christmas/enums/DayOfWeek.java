@@ -17,7 +17,7 @@ public enum DayOfWeek {
         this.count = count;
     }
 
-    public static DayOfWeek getToday(int count) {
+    public static DayOfWeek getDay(int count) {
         for (DayOfWeek day : DayOfWeek.values()) {
             if (day.getCount() == (count)) {
                 return day;
