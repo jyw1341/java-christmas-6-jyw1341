@@ -9,9 +9,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class Benefit {
-
-    private final Map<EventType, Integer> benefits;
+public record Benefit(Map<EventType, Integer> benefits) {
 
     public Benefit(Map<EventType, Integer> benefits) {
         this.benefits = Collections.unmodifiableMap(new EnumMap<>(benefits));
@@ -45,9 +43,5 @@ public class Benefit {
             return Badge.STAR;
         }
         return Badge.NONE;
-    }
-
-    public Map<EventType, Integer> getBenefits() {
-        return benefits;
     }
 }
