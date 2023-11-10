@@ -8,11 +8,11 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
-public class EventService {
+public class EventPlanner {
     public static final int EVENT_LIMIT = 10_000;
     private final List<Event> events;
 
-    public EventService() {
+    public EventPlanner() {
         this.events = new ArrayList<>();
         events.add(new WeekdayEvent());
         events.add(new WeekendEvent());

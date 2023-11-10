@@ -1,7 +1,7 @@
 package christmas;
 
 import christmas.event.Benefit;
-import christmas.event.EventService;
+import christmas.event.EventPlanner;
 import christmas.order.OrderRequest;
 import christmas.order.Orders;
 import christmas.view.InputView;
@@ -16,7 +16,7 @@ public class Application {
         inputView.readDate(orderRequest);
         inputView.readMenu(orderRequest);
         Orders orders = new Orders(orderRequest);
-        EventService eventService = new EventService();
+        EventPlanner eventService = new EventPlanner();
         Benefit benefit = eventService.applyEvent(orders);
         outputView.printPreview(orders.getDate());
         outputView.printOrderMenu(orders.getMenu());

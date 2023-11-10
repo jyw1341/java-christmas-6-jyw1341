@@ -12,13 +12,13 @@ import java.text.ParseException;
 import static christmas.event.DdayEvent.D_DAY_BENEFIT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class EventServiceTest {
+class EventPlannerTest {
 
-    private EventService eventService;
+    private EventPlanner eventPlanner;
 
     @BeforeEach
     void set() {
-        eventService = new EventService();
+        eventPlanner = new EventPlanner();
     }
 
     @Test
@@ -29,7 +29,7 @@ class EventServiceTest {
         orderRequest.setDate("27"); //12월 27일은 월요일이다.
         Orders orders = new Orders(orderRequest);
 
-        Benefit benefit = eventService.applyEvent(orders);
+        Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.WEEKDAY.getBenefit() * 2;
 
         assertEquals(expected, benefit.getTotalBenefit());
@@ -43,7 +43,7 @@ class EventServiceTest {
         orderRequest.setDate("31"); //12월 31일은 일요일이다.
         Orders orders = new Orders(orderRequest);
 
-        Benefit benefit = eventService.applyEvent(orders);
+        Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.WEEKDAY.getBenefit() * 2 + EventType.SPECIAL.getBenefit();
 
         assertEquals(expected, benefit.getTotalBenefit());
@@ -57,7 +57,7 @@ class EventServiceTest {
         orderRequest.setDate("31"); //12월 31일은 일요일이다.
         Orders orders = new Orders(orderRequest);
 
-        Benefit benefit = eventService.applyEvent(orders);
+        Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.WEEKDAY.getBenefit() * 2
                 + EventType.SPECIAL.getBenefit()
                 + EventType.PRESENT.getBenefit();
@@ -73,7 +73,7 @@ class EventServiceTest {
         orderRequest.setDate("10"); //12월 10일은 일요일이다.
         Orders orders = new Orders(orderRequest);
 
-        Benefit benefit = eventService.applyEvent(orders);
+        Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.WEEKDAY.getBenefit() * 2
                 + EventType.SPECIAL.getBenefit()
                 + EventType.PRESENT.getBenefit()
@@ -91,7 +91,7 @@ class EventServiceTest {
         orderRequest.setDate("30"); //12월 30일은 토요일이다.
         Orders orders = new Orders(orderRequest);
 
-        Benefit benefit = eventService.applyEvent(orders);
+        Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.WEEKEND.getBenefit() * 2;
 
         assertEquals(expected, benefit.getTotalBenefit());
@@ -105,7 +105,7 @@ class EventServiceTest {
         orderRequest.setDate("2"); //12월 2일은 토요일이다.
         Orders orders = new Orders(orderRequest);
 
-        Benefit benefit = eventService.applyEvent(orders);
+        Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.WEEKEND.getBenefit() * 2
                 + EventType.D_DAY.getBenefit()
                 + D_DAY_BENEFIT;
@@ -121,7 +121,7 @@ class EventServiceTest {
         orderRequest.setDate("2"); //12월 2일은 토요일이다.
         Orders orders = new Orders(orderRequest);
 
-        Benefit benefit = eventService.applyEvent(orders);
+        Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.WEEKEND.getBenefit() * 3
                 + (EventType.D_DAY.getBenefit() + D_DAY_BENEFIT)
                 + EventType.PRESENT.getBenefit();
@@ -137,7 +137,7 @@ class EventServiceTest {
         orderRequest.setDate("31"); //12월 31일은 일요일이다.
         Orders orders = new Orders(orderRequest);
 
-        Benefit benefit = eventService.applyEvent(orders);
+        Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.SPECIAL.getBenefit();
 
         assertEquals(expected, benefit.getTotalBenefit());
@@ -151,7 +151,7 @@ class EventServiceTest {
         orderRequest.setDate("3"); //12월 3일은 일요일이다.
         Orders orders = new Orders(orderRequest);
 
-        Benefit benefit = eventService.applyEvent(orders);
+        Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.SPECIAL.getBenefit()
                 + (EventType.D_DAY.getBenefit() + D_DAY_BENEFIT * 2);
 
@@ -166,7 +166,7 @@ class EventServiceTest {
         orderRequest.setDate("3"); //12월 3일은 일요일이다. 일요일은 평일 취급이다
         Orders orders = new Orders(orderRequest);
 
-        Benefit benefit = eventService.applyEvent(orders);
+        Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.SPECIAL.getBenefit()
                 + EventType.PRESENT.getBenefit()
                 + (EventType.D_DAY.getBenefit() + D_DAY_BENEFIT * 2);
@@ -182,7 +182,7 @@ class EventServiceTest {
         orderRequest.setDate("3"); //12월 3일은 일요일이다. 일요일은 평일 취급이다
         Orders orders = new Orders(orderRequest);
 
-        Benefit benefit = eventService.applyEvent(orders);
+        Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.SPECIAL.getBenefit() +
                 EventType.PRESENT.getBenefit() +
                 (EventType.D_DAY.getBenefit() + D_DAY_BENEFIT * 2) +
@@ -199,7 +199,7 @@ class EventServiceTest {
         orderRequest.setDate("28"); //12월 28일은 목요일이다.
         Orders orders = new Orders(orderRequest);
 
-        Benefit benefit = eventService.applyEvent(orders);
+        Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.PRESENT.getBenefit();
 
         assertEquals(expected, benefit.getTotalBenefit());
@@ -213,7 +213,7 @@ class EventServiceTest {
         orderRequest.setDate("4"); //12월 28일은 목요일이다.
         Orders orders = new Orders(orderRequest);
 
-        Benefit benefit = eventService.applyEvent(orders);
+        Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.PRESENT.getBenefit()
                 + (EventType.D_DAY.getBenefit() + D_DAY_BENEFIT * 3);
 
@@ -228,7 +228,7 @@ class EventServiceTest {
         orderRequest.setDate("1"); //12월 1일은 금요일이다.
         Orders orders = new Orders(orderRequest);
 
-        Benefit benefit = eventService.applyEvent(orders);
+        Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.D_DAY.getBenefit();
 
         assertEquals(expected, benefit.getTotalBenefit());
