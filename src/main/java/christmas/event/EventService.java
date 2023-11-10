@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class EventService {
-
+    public static final int EVENT_LIMIT = 10_000;
     private final List<Event> events;
 
     public EventService() {
@@ -24,6 +24,9 @@ public class EventService {
     public Benefit applyEvent(Orders orders) {
         Map<EventType, Integer> result = new EnumMap<>(EventType.class);
 
+        if (shouldSkipEvent(orders)) {
+            return new Benefit(result);
+        }
         for (Event event : events) {
             result.put(event.getType(), event.getBenefit(orders));
         }
