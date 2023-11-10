@@ -20,6 +20,7 @@ public class OrderRequest {
     public static final String ERROR_OVER_MAX_ORDER = "[ERROR] 메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.";
     public static final int MIN_DATE = 1;
     public static final int MAX_DATE = 31;
+    public static final int MAX_ORDER_AMOUNT = 20;
     private Date date;
     private Map<Menu, Integer> menu;
 
@@ -28,7 +29,7 @@ public class OrderRequest {
     }
 
     public void setDate(String input) {
-        validateDate(input);
+        validateDateInput(input);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String dateString = String.format("2023-12-%s", input);
         try {
@@ -38,7 +39,7 @@ public class OrderRequest {
         }
     }
 
-    private void validateDate(String input) {
+    private void validateDateInput(String input) {
         validateIsNotBlank(input, ERROR_INVALID_DATE);
         validateIsNumber(input, ERROR_INVALID_DATE);
         validateNumberInRange(input, MIN_DATE, MAX_DATE, ERROR_INVALID_DATE);
@@ -90,7 +91,7 @@ public class OrderRequest {
 
     private void validateOverMaxOrder(Map<Menu, Integer> menus) {
         int total = menus.values().stream().mapToInt(Integer::intValue).sum();
-        if (total > 20) {
+        if (total > MAX_ORDER_AMOUNT) {
             throw new IllegalArgumentException(ERROR_OVER_MAX_ORDER);
         }
     }

@@ -12,9 +12,9 @@ public class Orders {
     private final Date date;
     private final Map<Menu, Integer> menu;
 
-    public Orders(OrderRequest orderRequest) {
-        this.date = new Date(orderRequest.getDate().getTime());
-        this.menu = new EnumMap<>(orderRequest.getMenu());
+    public Orders(Date date, Map<Menu, Integer> menu) {
+        this.date = date;
+        this.menu = menu;
     }
 
     public Map<Menu, Integer> getMenu() {

@@ -7,9 +7,11 @@ import static christmas.view.Messages.*;
 
 public class InputView {
 
-    public void readReservationInfo(OrderRequest orderRequest) {
+    public OrderRequest readReservationInfo() {
+        OrderRequest orderRequest = new OrderRequest();
         readDate(orderRequest);
         readMenu(orderRequest);
+        return orderRequest;
     }
 
     private void readDate(OrderRequest orderRequest) {

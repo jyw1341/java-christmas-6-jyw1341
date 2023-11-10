@@ -27,7 +27,7 @@ class EventPlannerTest {
         OrderRequest orderRequest = new OrderRequest();
         orderRequest.setMenu("바비큐립-1,아이스크림-2");
         orderRequest.setDate("27"); //12월 27일은 월요일이다.
-        Orders orders = new Orders(orderRequest);
+        Orders orders = new Orders(orderRequest.getDate(), orderRequest.getMenu());
 
         Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.WEEKDAY.getBenefit() * 2;
@@ -41,7 +41,7 @@ class EventPlannerTest {
         OrderRequest orderRequest = new OrderRequest();
         orderRequest.setMenu("바비큐립-1,아이스크림-2");
         orderRequest.setDate("31"); //12월 31일은 일요일이다.
-        Orders orders = new Orders(orderRequest);
+        Orders orders = new Orders(orderRequest.getDate(), orderRequest.getMenu());
 
         Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.WEEKDAY.getBenefit() * 2 + EventType.SPECIAL.getBenefit();
@@ -55,7 +55,7 @@ class EventPlannerTest {
         OrderRequest orderRequest = new OrderRequest();
         orderRequest.setMenu("바비큐립-3,아이스크림-2");
         orderRequest.setDate("31"); //12월 31일은 일요일이다.
-        Orders orders = new Orders(orderRequest);
+        Orders orders = new Orders(orderRequest.getDate(), orderRequest.getMenu());
 
         Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.WEEKDAY.getBenefit() * 2
@@ -71,7 +71,7 @@ class EventPlannerTest {
         OrderRequest orderRequest = new OrderRequest();
         orderRequest.setMenu("바비큐립-3,아이스크림-2");
         orderRequest.setDate("10"); //12월 10일은 일요일이다.
-        Orders orders = new Orders(orderRequest);
+        Orders orders = new Orders(orderRequest.getDate(), orderRequest.getMenu());
 
         Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.WEEKDAY.getBenefit() * 2
@@ -89,7 +89,7 @@ class EventPlannerTest {
         OrderRequest orderRequest = new OrderRequest();
         orderRequest.setMenu("바비큐립-2,아이스크림-2");
         orderRequest.setDate("30"); //12월 30일은 토요일이다.
-        Orders orders = new Orders(orderRequest);
+        Orders orders = new Orders(orderRequest.getDate(), orderRequest.getMenu());
 
         Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.WEEKEND.getBenefit() * 2;
@@ -103,7 +103,7 @@ class EventPlannerTest {
         OrderRequest orderRequest = new OrderRequest();
         orderRequest.setMenu("바비큐립-2,아이스크림-2");
         orderRequest.setDate("2"); //12월 2일은 토요일이다.
-        Orders orders = new Orders(orderRequest);
+        Orders orders = new Orders(orderRequest.getDate(), orderRequest.getMenu());
 
         Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.WEEKEND.getBenefit() * 2
@@ -119,7 +119,7 @@ class EventPlannerTest {
         OrderRequest orderRequest = new OrderRequest();
         orderRequest.setMenu("바비큐립-3,아이스크림-2");
         orderRequest.setDate("2"); //12월 2일은 토요일이다.
-        Orders orders = new Orders(orderRequest);
+        Orders orders = new Orders(orderRequest.getDate(), orderRequest.getMenu());
 
         Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.WEEKEND.getBenefit() * 3
@@ -135,7 +135,7 @@ class EventPlannerTest {
         OrderRequest orderRequest = new OrderRequest();
         orderRequest.setMenu("바비큐립-1");
         orderRequest.setDate("31"); //12월 31일은 일요일이다.
-        Orders orders = new Orders(orderRequest);
+        Orders orders = new Orders(orderRequest.getDate(), orderRequest.getMenu());
 
         Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.SPECIAL.getBenefit();
@@ -149,7 +149,7 @@ class EventPlannerTest {
         OrderRequest orderRequest = new OrderRequest();
         orderRequest.setMenu("바비큐립-1");
         orderRequest.setDate("3"); //12월 3일은 일요일이다.
-        Orders orders = new Orders(orderRequest);
+        Orders orders = new Orders(orderRequest.getDate(), orderRequest.getMenu());
 
         Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.SPECIAL.getBenefit()
@@ -164,7 +164,7 @@ class EventPlannerTest {
         OrderRequest orderRequest = new OrderRequest();
         orderRequest.setMenu("바비큐립-3");
         orderRequest.setDate("3"); //12월 3일은 일요일이다. 일요일은 평일 취급이다
-        Orders orders = new Orders(orderRequest);
+        Orders orders = new Orders(orderRequest.getDate(), orderRequest.getMenu());
 
         Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.SPECIAL.getBenefit()
@@ -180,7 +180,7 @@ class EventPlannerTest {
         OrderRequest orderRequest = new OrderRequest();
         orderRequest.setMenu("바비큐립-3,아이스크림-1");
         orderRequest.setDate("3"); //12월 3일은 일요일이다. 일요일은 평일 취급이다
-        Orders orders = new Orders(orderRequest);
+        Orders orders = new Orders(orderRequest.getDate(), orderRequest.getMenu());
 
         Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.SPECIAL.getBenefit() +
@@ -197,7 +197,7 @@ class EventPlannerTest {
         OrderRequest orderRequest = new OrderRequest();
         orderRequest.setMenu("바비큐립-3");
         orderRequest.setDate("28"); //12월 28일은 목요일이다.
-        Orders orders = new Orders(orderRequest);
+        Orders orders = new Orders(orderRequest.getDate(), orderRequest.getMenu());
 
         Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.PRESENT.getBenefit();
@@ -211,7 +211,7 @@ class EventPlannerTest {
         OrderRequest orderRequest = new OrderRequest();
         orderRequest.setMenu("바비큐립-3");
         orderRequest.setDate("4"); //12월 28일은 목요일이다.
-        Orders orders = new Orders(orderRequest);
+        Orders orders = new Orders(orderRequest.getDate(), orderRequest.getMenu());
 
         Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.PRESENT.getBenefit()
@@ -226,7 +226,7 @@ class EventPlannerTest {
         OrderRequest orderRequest = new OrderRequest();
         orderRequest.setMenu("아이스크림-3");
         orderRequest.setDate("1"); //12월 1일은 금요일이다.
-        Orders orders = new Orders(orderRequest);
+        Orders orders = new Orders(orderRequest.getDate(), orderRequest.getMenu());
 
         Benefit benefit = eventPlanner.applyEvent(orders);
         int expected = EventType.D_DAY.getBenefit();

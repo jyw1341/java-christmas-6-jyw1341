@@ -12,12 +12,11 @@ public class Application {
         // TODO: 프로그램 구현
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
+        EventPlanner eventPlanner = new EventPlanner();
 
-        OrderRequest orderRequest = new OrderRequest();
-        inputView.readReservationInfo(orderRequest);
-        Orders orders = new Orders(orderRequest);
-        EventPlanner eventService = new EventPlanner();
-        Benefit benefit = eventService.applyEvent(orders);
+        OrderRequest orderRequest = inputView.readReservationInfo();
+        Orders orders = new Orders(orderRequest.getDate(), orderRequest.getMenu());
+        Benefit benefit = eventPlanner.applyEvent(orders);
 
         outputView.printEventResult(orders, benefit);
     }

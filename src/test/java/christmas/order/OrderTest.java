@@ -17,7 +17,7 @@ class OrderTest {
         OrderRequest orderRequest = new OrderRequest();
         orderRequest.setMenu("바비큐립-1,시저샐러드-1,제로콜라-1");
         orderRequest.setDate("25");
-        Orders order = new Orders(orderRequest);
+        Orders order = new Orders(orderRequest.getDate(), orderRequest.getMenu());
         int result = Menu.BBQ_RIBS.getPrice() + Menu.CAESAR_SALAD.getPrice() + Menu.ZERO_COKE.getPrice();
 
         assertEquals(result, order.getTotalOrderAmount());
