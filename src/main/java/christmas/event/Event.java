@@ -6,9 +6,10 @@ import christmas.enums.Menu;
 import christmas.enums.MenuType;
 import christmas.order.Orders;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
+
+import static christmas.utils.CalenderUtils.getDayOfWeek;
 
 public abstract class Event {
 
@@ -19,10 +20,7 @@ public abstract class Event {
     public abstract EventType getType();
 
     protected DayOfWeek getToday(Date date) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-        return DayOfWeek.getToday(dayOfWeek);
+        return DayOfWeek.getToday(getDayOfWeek(date));
     }
 
     protected boolean shouldSkipEvent(Orders orders) {
