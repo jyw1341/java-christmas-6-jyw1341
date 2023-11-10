@@ -3,16 +3,23 @@ package christmas.event;
 import christmas.enums.Badge;
 import christmas.enums.EventType;
 
-import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public record Benefit(Map<EventType, Integer> benefits) {
+public class Benefit {
+
+    private final Map<EventType, Integer> benefits;
 
     public Benefit(Map<EventType, Integer> benefits) {
-        this.benefits = Collections.unmodifiableMap(new EnumMap<>(benefits));
+        this.benefits = new EnumMap<>(benefits);
+    }
+
+    public Map<EventType, Integer> getBenefits() {
+        Map<EventType, Integer> result = new EnumMap<>(EventType.class);
+        result.putAll(benefits);
+        return result;
     }
 
     public Integer getDiscountAmount() {
