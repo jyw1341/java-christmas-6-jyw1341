@@ -27,11 +27,15 @@ public class OrderRequest {
         return date;
     }
 
-    public void setDate(String input) throws ParseException {
+    public void setDate(String input) {
         validateDate(input);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String dateString = String.format("2023-12-%s", input);
-        this.date = dateFormat.parse(dateString);
+        try {
+            this.date = dateFormat.parse(dateString);
+        } catch (ParseException e) {
+            throw new IllegalArgumentException(ERROR_INVALID_DATE);
+        }
     }
 
     private void validateDate(String input) {
