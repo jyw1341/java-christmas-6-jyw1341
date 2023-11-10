@@ -11,5 +11,9 @@ public class CalenderUtils {
         return calendar.get(Calendar.DAY_OF_MONTH);
     }
 
-
+    public static int getMonth(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return calendar.get(Calendar.MONTH);
+    }
 }
