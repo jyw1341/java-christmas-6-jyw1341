@@ -9,7 +9,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.text.ParseException;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -29,11 +28,11 @@ class WeekendEventTest {
         Orders order2 = new Orders(orderRequest2);
 
         Event weekendEvent = new WeekendEvent();
-        Map<EventType, Integer> result = weekendEvent.getBenefit(order);
-        Map<EventType, Integer> result2 = weekendEvent.getBenefit(order2);
+        int result = weekendEvent.getBenefit(order);
+        int result2 = weekendEvent.getBenefit(order2);
 
-        assertEquals(EventType.WEEKEND.getBenefit(), result.get(EventType.WEEKEND));
-        assertEquals(EventType.WEEKEND.getBenefit() * 2, result2.get(EventType.WEEKEND));
+        assertEquals(EventType.WEEKEND.getBenefit(), result);
+        assertEquals(EventType.WEEKEND.getBenefit() * 2, result2);
     }
 
     @Test
@@ -44,8 +43,8 @@ class WeekendEventTest {
         orderRequest.setDate("3"); //12월 3일은 일요일이다.
         Orders order = new Orders(orderRequest);
         Event weekendEvent = new WeekendEvent();
-        Map<EventType, Integer> result = weekendEvent.getBenefit(order);
-        assertEquals(0, result.get(EventType.WEEKEND));
+        int result = weekendEvent.getBenefit(order);
+        assertEquals(0, result);
     }
 
 }

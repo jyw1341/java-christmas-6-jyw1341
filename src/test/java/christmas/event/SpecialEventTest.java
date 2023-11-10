@@ -8,7 +8,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.text.ParseException;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -23,8 +22,8 @@ class SpecialEventTest {
         orderRequest.setDate(day);
         Orders order = new Orders(orderRequest);
         Event event = new SpecialEvent();
-        Map<EventType, Integer> result = event.getBenefit(order);
-        assertEquals(EventType.SPECIAL.getBenefit(), result.get(EventType.SPECIAL));
+        int result = event.getBenefit(order);
+        assertEquals(EventType.SPECIAL.getBenefit(), result);
     }
 
     @ParameterizedTest
@@ -36,8 +35,8 @@ class SpecialEventTest {
         orderRequest.setDate(day);
         Orders order = new Orders(orderRequest);
         Event event = new SpecialEvent();
-        Map<EventType, Integer> result = event.getBenefit(order);
-        assertEquals(0, result.get(EventType.SPECIAL));
+        int result = event.getBenefit(order);
+        assertEquals(0, result);
     }
 
     @ParameterizedTest
@@ -49,7 +48,7 @@ class SpecialEventTest {
         orderRequest.setDate(day);
         Orders order = new Orders(orderRequest);
         Event event = new SpecialEvent();
-        Map<EventType, Integer> result = event.getBenefit(order);
-        assertEquals(0, result.get(EventType.SPECIAL));
+        int result = event.getBenefit(order);
+        assertEquals(0, result);
     }
 }

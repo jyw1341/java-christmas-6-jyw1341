@@ -7,7 +7,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -21,8 +20,8 @@ class PresentEventTest {
         orderRequest.setDate("3"); //12월 3일은 일요일이다.
         Orders order = new Orders(orderRequest);
         Event event = new PresentEvent();
-        Map<EventType, Integer> result = event.getBenefit(order);
-        assertEquals(EventType.PRESENT.getBenefit(), result.get(EventType.PRESENT));
+        int result = event.getBenefit(order);
+        assertEquals(EventType.PRESENT.getBenefit(), result);
     }
 
     @Test
@@ -33,7 +32,7 @@ class PresentEventTest {
         orderRequest.setDate("3"); //12월 3일은 일요일이다.
         Orders order = new Orders(orderRequest);
         Event event = new PresentEvent();
-        Map<EventType, Integer> result = event.getBenefit(order);
-        assertEquals(0, result.get(EventType.PRESENT));
+        int result = event.getBenefit(order);
+        assertEquals(0, result);
     }
 }

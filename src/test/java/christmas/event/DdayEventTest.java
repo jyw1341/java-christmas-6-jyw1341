@@ -8,7 +8,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.text.ParseException;
-import java.util.Map;
 
 import static christmas.event.DdayEvent.D_DAY_BENEFIT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,9 +23,9 @@ class DdayEventTest {
         orderRequest.setDate(day);
         Orders order = new Orders(orderRequest);
         Event event = new DdayEvent();
-        Map<EventType, Integer> result = event.getBenefit(order);
+        int result = event.getBenefit(order);
         int expected = EventType.D_DAY.getBenefit() + (D_DAY_BENEFIT * (Integer.parseInt(day) - 1));
-        assertEquals(expected, result.get(EventType.D_DAY));
+        assertEquals(expected, result);
     }
 
     @ParameterizedTest
@@ -38,9 +37,9 @@ class DdayEventTest {
         orderRequest.setDate(day);
         Orders order = new Orders(orderRequest);
         Event event = new DdayEvent();
-        Map<EventType, Integer> result = event.getBenefit(order);
+        int result = event.getBenefit(order);
         int expected = EventType.D_DAY.getBenefit() + (D_DAY_BENEFIT * (Integer.parseInt(day) - 1));
-        assertEquals(expected, result.get(EventType.D_DAY));
+        assertEquals(expected, result);
     }
 
     @ParameterizedTest
@@ -52,8 +51,8 @@ class DdayEventTest {
         orderRequest.setDate(day);
         Orders order = new Orders(orderRequest);
         Event event = new DdayEvent();
-        Map<EventType, Integer> result = event.getBenefit(order);
-        assertEquals(0, result.get(EventType.D_DAY));
+        int result = event.getBenefit(order);
+        assertEquals(0, result);
     }
 
     @ParameterizedTest
@@ -65,7 +64,7 @@ class DdayEventTest {
         orderRequest.setDate(day);
         Orders order = new Orders(orderRequest);
         Event event = new DdayEvent();
-        Map<EventType, Integer> result = event.getBenefit(order);
-        assertEquals(0, result.get(EventType.D_DAY));
+        int result = event.getBenefit(order);
+        assertEquals(0, result);
     }
 }

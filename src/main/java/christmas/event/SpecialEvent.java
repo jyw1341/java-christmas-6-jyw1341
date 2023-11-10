@@ -6,23 +6,20 @@ import christmas.order.Orders;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.EnumMap;
-import java.util.Map;
 
 import static christmas.enums.DayOfWeek.SUNDAY;
 
 public class SpecialEvent extends Event {
     @Override
-    public Map<EventType, Integer> getBenefit(Orders orders) {
-        Map<EventType, Integer> result = new EnumMap<>(EventType.class);
+    public Integer getBenefit(Orders orders) {
+        int result = 0;
 
-        result.put(EventType.SPECIAL, 0);
-        if (orders.getTotalOrderAmount() < EVENT_LIMIT) {
+        if (shouldSkipEvent(orders)) {
             return result;
         }
         DayOfWeek today = getToday(orders.getDate());
         if (today.getCount() == SUNDAY.getCount() || isChristmas(orders.getDate())) {
-            result.put(EventType.SPECIAL, EventType.SPECIAL.getBenefit());
+            result = EventType.SPECIAL.getBenefit();
         }
         return result;
     }
@@ -37,5 +34,10 @@ public class SpecialEvent extends Event {
         int christmasDay = 25;
 
         return month == christmasMonth && day == christmasDay;
+    }
+
+    @Override
+    public EventType getType() {
+        return EventType.SPECIAL;
     }
 }
