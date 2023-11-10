@@ -3,6 +3,8 @@ package christmas.view;
 import christmas.enums.Badge;
 import christmas.enums.EventType;
 import christmas.enums.Menu;
+import christmas.event.Benefit;
+import christmas.order.Orders;
 
 import java.util.Date;
 import java.util.Map;
@@ -12,11 +14,22 @@ import static christmas.view.Messages.*;
 
 public class OutputView {
 
-    public void printPreview(Date date) {
+    public void printEventResult(Orders orders, Benefit benefit) {
+        printPreview(orders.getDate());
+        printOrderMenu(orders.getMenu());
+        printTotalAmount(orders.getTotalOrderAmount());
+        printPresent(benefit.hasPresent());
+        printBenefits(benefit.getBenefits());
+        printTotalBenefits(benefit.getTotalBenefit());
+        printFinalPayment(orders.getTotalOrderAmount() - benefit.getDiscountAmount());
+        printBadge(benefit.getBadge());
+    }
+
+    private void printPreview(Date date) {
         System.out.printf(MESSAGE_PREVIEW_FORMAT, getDayOfMonth(date));
     }
 
-    public void printOrderMenu(Map<Menu, Integer> menu) {
+    private void printOrderMenu(Map<Menu, Integer> menu) {
         System.out.println(MESSAGE_ORDER_MENU);
         for (Map.Entry<Menu, Integer> entry : menu.entrySet()) {
             String menuName = entry.getKey().getName();
@@ -26,12 +39,12 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printTotalAmount(int amount) {
+    private void printTotalAmount(int amount) {
         System.out.println(MESSAGE_TOTAL_AMOUNT);
         System.out.printf(CURRENCY_FORMAT + TWO_LINE_SPACE, amount);
     }
 
-    public void printPresent(boolean hasPresent) {
+    private void printPresent(boolean hasPresent) {
         System.out.println(MESSAGE_PRESENT_MENU);
         if (hasPresent) {
             System.out.println(MESSAGE_CHAMPAGNE);
@@ -40,7 +53,7 @@ public class OutputView {
         System.out.println(MESSAGE_NONE);
     }
 
-    public void printBenefits(Map<EventType, Integer> benefits) {
+    private void printBenefits(Map<EventType, Integer> benefits) {
         System.out.println(MESSAGE_BENEFITS_LIST);
         if (benefits.isEmpty()) {
             System.out.println(MESSAGE_NONE);
@@ -56,7 +69,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printTotalBenefits(int benefits) {
+    private void printTotalBenefits(int benefits) {
         System.out.println(MESSAGE_TOTAL_BENEFITS);
         if (benefits == 0) {
             System.out.printf(CURRENCY_FORMAT + TWO_LINE_SPACE, benefits);
@@ -65,12 +78,12 @@ public class OutputView {
         System.out.printf(CURRENCY_FORMAT_MINUS + TWO_LINE_SPACE, benefits);
     }
 
-    public void printFinalPayment(int payment) {
+    private void printFinalPayment(int payment) {
         System.out.println(MESSAGE_FINAL_PAYMENT);
         System.out.printf(CURRENCY_FORMAT + TWO_LINE_SPACE, payment);
     }
 
-    public void printBadge(Badge badge) {
+    private void printBadge(Badge badge) {
         System.out.println(MESSAGE_EVENT_BADGE);
         System.out.println(badge.getName());
     }

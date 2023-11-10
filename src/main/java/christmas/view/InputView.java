@@ -7,7 +7,12 @@ import static christmas.view.Messages.*;
 
 public class InputView {
 
-    public void readDate(OrderRequest orderRequest) {
+    public void readReservationInfo(OrderRequest orderRequest) {
+        readDate(orderRequest);
+        readMenu(orderRequest);
+    }
+
+    private void readDate(OrderRequest orderRequest) {
         System.out.println(MESSAGE_GREETINGS);
         while (true) {
             try {
@@ -21,7 +26,7 @@ public class InputView {
         }
     }
 
-    public void readMenu(OrderRequest orderRequest) {
+    private void readMenu(OrderRequest orderRequest) {
         while (true) {
             try {
                 System.out.println(MESSAGE_GET_ORDER);
