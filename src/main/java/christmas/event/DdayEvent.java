@@ -3,8 +3,7 @@ package christmas.event;
 import christmas.enums.EventType;
 import christmas.order.Orders;
 
-import java.util.Calendar;
-import java.util.Date;
+import static christmas.utils.CalenderUtils.getDayOfMonth;
 
 public class DdayEvent extends Event {
 
@@ -18,7 +17,7 @@ public class DdayEvent extends Event {
         if (shouldSkipEvent(orders)) {
             return result;
         }
-        int day = getDay(orders.getDate());
+        int day = getDayOfMonth(orders.getDate());
         if (isDdayPeriod(day)) {
             result = EventType.D_DAY.getBenefit() + ((day - 1) * D_DAY_BENEFIT);
         }
@@ -27,12 +26,6 @@ public class DdayEvent extends Event {
 
     private boolean isDdayPeriod(int day) {
         return day >= D_DAY_EVENT_FIRST_DAY && day <= D_DAY_EVENT_LAST_DAY;
-    }
-
-    private int getDay(Date date) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        return calendar.get(Calendar.DAY_OF_MONTH);
     }
 
     @Override
