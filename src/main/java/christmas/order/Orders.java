@@ -2,7 +2,10 @@ package christmas.order;
 
 import christmas.enums.Menu;
 
-import java.util.*;
+import java.util.Date;
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.Set;
 
 public class Orders {
 
@@ -11,11 +14,13 @@ public class Orders {
 
     public Orders(OrderRequest orderRequest) {
         this.date = new Date(orderRequest.getDate().getTime());
-        this.menu = Collections.unmodifiableMap(new EnumMap<>(orderRequest.getMenu()));
+        this.menu = new EnumMap<>(orderRequest.getMenu());
     }
 
     public Map<Menu, Integer> getMenu() {
-        return menu;
+        Map<Menu, Integer> result = new EnumMap<>(Menu.class);
+        result.putAll(menu);
+        return result;
     }
 
     public Date getDate() {
