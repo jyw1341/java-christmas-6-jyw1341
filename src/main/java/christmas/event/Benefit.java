@@ -28,7 +28,7 @@ public record Benefit(Map<EventType, Integer> benefits) {
     }
 
     public boolean hasPresent() {
-        return benefits.containsKey(EventType.PRESENT);
+        return benefits.get(EventType.PRESENT) != 0;
     }
 
     public Badge getBadge() {
