@@ -54,17 +54,4 @@ class DdayEventTest {
         int result = event.getBenefit(order);
         assertEquals(0, result);
     }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"})
-    @DisplayName("총 주문 금액이 만원 미만이면 디데이 할인을 못받는다.")
-    void getBenefit4(String day) throws ParseException {
-        OrderRequest orderRequest = new OrderRequest();
-        orderRequest.setMenu("시저샐러드-1");
-        orderRequest.setDate(day);
-        Orders order = new Orders(orderRequest);
-        Event event = new DdayEvent();
-        int result = event.getBenefit(order);
-        assertEquals(0, result);
-    }
 }

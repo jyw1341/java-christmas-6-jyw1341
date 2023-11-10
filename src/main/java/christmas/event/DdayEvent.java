@@ -14,9 +14,6 @@ public class DdayEvent extends Event {
     @Override
     public Integer getBenefit(Orders orders) {
         int result = 0;
-        if (shouldSkipEvent(orders)) {
-            return result;
-        }
         int day = getDayOfMonth(orders.getDate());
         if (isDdayPeriod(day)) {
             result = EventType.D_DAY.getBenefit() + ((day - 1) * D_DAY_BENEFIT);

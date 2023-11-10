@@ -38,17 +38,4 @@ class SpecialEventTest {
         int result = event.getBenefit(order);
         assertEquals(0, result);
     }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"3", "10", "17", "24", "25"}) //달력에 별이 있는 날은 12월의 모든 일요일과 크리스마스 날이다.
-    @DisplayName("달력에 별이 있는 날이라도 총 주문 금액이 만원 미만이면 할인을 못받는다.")
-    void testGetBenefit3(String day) throws ParseException {
-        OrderRequest orderRequest = new OrderRequest();
-        orderRequest.setMenu("시저샐러드-1");
-        orderRequest.setDate(day);
-        Orders order = new Orders(orderRequest);
-        Event event = new SpecialEvent();
-        int result = event.getBenefit(order);
-        assertEquals(0, result);
-    }
 }

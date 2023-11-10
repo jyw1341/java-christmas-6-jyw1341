@@ -29,4 +29,8 @@ public class EventService {
         }
         return new Benefit(result);
     }
+
+    private boolean shouldSkipEvent(Orders orders) {
+        return orders.getTotalOrderAmount() < 10000;
+    }
 }

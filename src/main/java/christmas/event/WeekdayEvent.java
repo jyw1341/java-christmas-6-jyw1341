@@ -13,9 +13,6 @@ public class WeekdayEvent extends Event {
     @Override
     public Integer getBenefit(Orders orders) {
         int result = 0;
-        if (shouldSkipEvent(orders)) {
-            return result;
-        }
         DayOfWeek today = getToday(orders.getDate());
         if (isWeekday(today)) {
             int count = countMenuType(orders.getMenu(), MenuType.DESSERTS);

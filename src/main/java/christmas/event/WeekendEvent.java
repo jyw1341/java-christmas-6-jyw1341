@@ -13,9 +13,6 @@ public class WeekendEvent extends Event {
     @Override
     public Integer getBenefit(Orders orders) {
         int result = 0;
-        if (shouldSkipEvent(orders)) {
-            return result;
-        }
         DayOfWeek today = getToday(orders.getDate());
         if (isWeekend(today)) {
             int count = countMenuType(orders.getMenu(), MenuType.MAIN_COURSE);

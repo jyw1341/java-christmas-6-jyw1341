@@ -23,10 +23,6 @@ public abstract class Event {
         return DayOfWeek.getDay(getDayOfWeek(date));
     }
 
-    protected boolean shouldSkipEvent(Orders orders) {
-        return orders.getTotalOrderAmount() < EVENT_LIMIT;
-    }
-
     protected int countMenuType(Map<Menu, Integer> menu, MenuType menuType) {
         return menu.keySet().stream()
                 .filter(menuItem -> menuItem.getType().equals(menuType))

@@ -42,19 +42,6 @@ class WeekdayEventTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"3", "4", "5", "6", "7"}) //2023년 12월 3일은 일요일이다. 12월 7일은 목요일이다
-    @DisplayName("일~목요일에 디저트를 시켜도 총주문금액이 만원 이하면 할인을 못 받는다.")
-    void testDiscount3(String day) throws ParseException {
-        OrderRequest orderRequest = new OrderRequest();
-        orderRequest.setMenu("아이스크림-1");
-        orderRequest.setDate(day);
-        Orders order = new Orders(orderRequest);
-        WeekdayEvent weekdayEvent = new WeekdayEvent();
-        int result = weekdayEvent.getBenefit(order);
-        assertEquals(0, result);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"3", "4", "5", "6", "7"}) //2023년 12월 3일은 일요일이다. 12월 7일은 목요일이다
     @DisplayName("일~목요일에 디저트를 여러개 시키면 개당 2023원 할인을 받는다.")
     void testDiscount4(String day) throws ParseException {
         OrderRequest orderRequest = new OrderRequest();
