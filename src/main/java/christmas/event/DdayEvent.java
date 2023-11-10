@@ -19,10 +19,14 @@ public class DdayEvent extends Event {
             return result;
         }
         int day = getDay(orders.getDate());
-        if (day >= D_DAY_EVENT_FIRST_DAY && day <= D_DAY_EVENT_LAST_DAY) {
+        if (isDdayPeriod(day)) {
             result = EventType.D_DAY.getBenefit() + ((day - 1) * D_DAY_BENEFIT);
         }
         return result;
+    }
+
+    private boolean isDdayPeriod(int day) {
+        return day >= D_DAY_EVENT_FIRST_DAY && day <= D_DAY_EVENT_LAST_DAY;
     }
 
     private int getDay(Date date) {

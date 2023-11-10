@@ -18,10 +18,14 @@ public class SpecialEvent extends Event {
             return result;
         }
         DayOfWeek today = getToday(orders.getDate());
-        if (today.getCount() == SUNDAY.getCount() || isChristmas(orders.getDate())) {
+        if (isSpecialDay(today, orders.getDate())) {
             result = EventType.SPECIAL.getBenefit();
         }
         return result;
+    }
+
+    private boolean isSpecialDay(DayOfWeek dayOfWeek, Date date) {
+        return dayOfWeek.getCount() == SUNDAY.getCount() || isChristmas(date);
     }
 
     private boolean isChristmas(Date date) {
