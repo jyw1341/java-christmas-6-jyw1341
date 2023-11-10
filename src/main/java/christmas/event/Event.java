@@ -13,11 +13,11 @@ import static christmas.utils.CalenderUtils.getDayOfWeek;
 
 public abstract class Event {
 
-    public static final int EVENT_LIMIT = 10_000;
-
     public abstract Integer getBenefit(Orders orders);
 
     public abstract EventType getType();
+
+    public abstract boolean checkCondition(Orders orders);
 
     protected DayOfWeek getToday(Date date) {
         return DayOfWeek.getDay(getDayOfWeek(date));

@@ -12,13 +12,14 @@ public class DdayEvent extends Event {
     public static final int D_DAY_BENEFIT = 100;
 
     @Override
+    public boolean checkCondition(Orders orders) {
+        return isDdayPeriod(getDayOfMonth(orders.getDate()));
+    }
+
+    @Override
     public Integer getBenefit(Orders orders) {
-        int result = 0;
         int day = getDayOfMonth(orders.getDate());
-        if (isDdayPeriod(day)) {
-            result = EventType.D_DAY.getBenefit() + ((day - 1) * D_DAY_BENEFIT);
-        }
-        return result;
+        return EventType.D_DAY.getBenefit() + ((day - 1) * D_DAY_BENEFIT);
     }
 
     private boolean isDdayPeriod(int day) {

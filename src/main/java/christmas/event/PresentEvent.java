@@ -8,13 +8,13 @@ public class PresentEvent extends Event {
     public static final int PRESENT_LIMIT = 120_000;
 
     @Override
+    public boolean checkCondition(Orders orders) {
+        return orders.getTotalOrderAmount() > PRESENT_LIMIT;
+    }
+
+    @Override
     public Integer getBenefit(Orders orders) {
-        int result = 0;
-        if (orders.getTotalOrderAmount() < PRESENT_LIMIT) {
-            return result;
-        }
-        result = EventType.PRESENT.getBenefit();
-        return result;
+        return EventType.PRESENT.getBenefit();
     }
 
     @Override

@@ -11,14 +11,15 @@ import static christmas.enums.DayOfWeek.THURSDAY;
 public class WeekdayEvent extends Event {
 
     @Override
-    public Integer getBenefit(Orders orders) {
-        int result = 0;
+    public boolean checkCondition(Orders orders) {
         DayOfWeek today = getToday(orders.getDate());
-        if (isWeekday(today)) {
-            int count = countMenuType(orders.getMenu(), MenuType.DESSERTS);
-            result = count * EventType.WEEKDAY.getBenefit();
-        }
-        return result;
+        return isWeekday(today);
+    }
+
+    @Override
+    public Integer getBenefit(Orders orders) {
+        int count = countMenuType(orders.getMenu(), MenuType.DESSERTS);
+        return count * EventType.WEEKDAY.getBenefit();
     }
 
     private boolean isWeekday(DayOfWeek dayOfWeek) {

@@ -28,12 +28,14 @@ public class EventService {
             return new Benefit(result);
         }
         for (Event event : events) {
-            result.put(event.getType(), event.getBenefit(orders));
+            if (event.checkCondition(orders)) {
+                result.put(event.getType(), event.getBenefit(orders));
+            }
         }
         return new Benefit(result);
     }
 
     private boolean shouldSkipEvent(Orders orders) {
-        return orders.getTotalOrderAmount() < 10000;
+        return orders.getTotalOrderAmount() < EVENT_LIMIT;
     }
 }

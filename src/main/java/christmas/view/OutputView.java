@@ -42,7 +42,7 @@ public class OutputView {
 
     public void printBenefits(Map<EventType, Integer> benefits) {
         System.out.println(MESSAGE_BENEFITS_LIST);
-        if (benefits.values().stream().mapToInt(Integer::intValue).sum() == 0) {
+        if (benefits.isEmpty()) {
             System.out.println(MESSAGE_NONE);
             return;
         }

@@ -35,7 +35,7 @@ public class Benefit {
     }
 
     public boolean hasPresent() {
-        return benefits.get(EventType.PRESENT) != 0;
+        return benefits.containsKey(EventType.PRESENT);
     }
 
     public Badge getBadge() {

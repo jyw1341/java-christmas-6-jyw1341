@@ -12,14 +12,16 @@ import static christmas.utils.CalenderUtils.getDayOfMonth;
 import static christmas.utils.CalenderUtils.getMonth;
 
 public class SpecialEvent extends Event {
+
+    @Override
+    public boolean checkCondition(Orders orders) {
+        DayOfWeek today = getToday(orders.getDate());
+        return isSpecialDay(today, orders.getDate());
+    }
+
     @Override
     public Integer getBenefit(Orders orders) {
-        int result = 0;
-        DayOfWeek today = getToday(orders.getDate());
-        if (isSpecialDay(today, orders.getDate())) {
-            result = EventType.SPECIAL.getBenefit();
-        }
-        return result;
+        return EventType.SPECIAL.getBenefit();
     }
 
     private boolean isSpecialDay(DayOfWeek dayOfWeek, Date date) {
