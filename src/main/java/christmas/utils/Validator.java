@@ -6,13 +6,6 @@ import java.util.Set;
 
 public class Validator {
 
-    public static final String ERROR_BLANK = "[ERROR] 입력된 값이 없습니다.";
-    public static final String ERROR_NOT_NUMBER = "[ERROR] 숫자를 입력해야합니다.";
-    public static final String ERROR_NOT_MULTIPLE = "[ERROR] %d단위로 나누어 떨어지는 숫자가 아닙니다.";
-    public static final String ERROR_INCORRECT_LENGTH = "[ERROR] %d개를 입력해야 합니다.";
-    public static final String ERROR_INCORRECT_RANGE = "[ERROR] %d부터 %d 사이의 숫자를 입력해야합니다.";
-    public static final String ERROR_DUPLICATED_ELEMENT = "[ERROR] 중복된 값을 입력할 수 없습니다.";
-
     public static void validateIsNotBlank(String input, String message) {
         if (input.isBlank()) {
             throw new IllegalArgumentException(message);
@@ -25,36 +18,36 @@ public class Validator {
         }
     }
 
-    public static void validateIsNumber(String[] input) {
+    public static void validateIsNumber(String[] input, String message) {
         for (String s : input) {
             if (!s.matches("^[1-9]\\d*$")) {
-                throw new IllegalArgumentException(ERROR_NOT_NUMBER);
+                throw new IllegalArgumentException(message);
             }
         }
     }
 
-    public static void validateIsMultipleOf(String input, int target) {
+    public static void validateIsMultipleOf(String input, int target, String message) {
         if (Integer.parseInt(input) % target != 0) {
-            throw new IllegalArgumentException(String.format(ERROR_NOT_MULTIPLE, target));
+            throw new IllegalArgumentException(String.format(message, target));
         }
     }
 
-    public static <T> void validateListLength(List<T> list, int targetLength) {
+    public static <T> void validateListLength(List<T> list, int targetLength, String message) {
         if (list.size() != targetLength) {
-            throw new IllegalArgumentException(String.format(ERROR_INCORRECT_LENGTH, targetLength));
+            throw new IllegalArgumentException(String.format(message, targetLength));
         }
     }
 
-    public static void validateNumberInRange(int input, int min, int max) {
+    public static void validateNumberInRange(int input, int min, int max, String message) {
         if (input > max || input < min) {
-            throw new IllegalArgumentException(String.format(ERROR_INCORRECT_RANGE, min, max));
+            throw new IllegalArgumentException(String.format(message, min, max));
         }
     }
 
-    public static void validateNumberInRange(List<Integer> input, int min, int max) {
+    public static void validateNumberInRange(List<Integer> input, int min, int max, String message) {
         for (Integer number : input) {
             if (number > max || number < min) {
-                throw new IllegalArgumentException(String.format(ERROR_INCORRECT_RANGE, min, max));
+                throw new IllegalArgumentException(String.format(message, min, max));
             }
         }
     }
