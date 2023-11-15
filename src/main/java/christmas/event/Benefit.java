@@ -27,7 +27,6 @@ public class Benefit {
                 .filter((benefit) -> !benefit.getKey().equals(EventType.PRESENT))
                 .collect(Collectors.toSet());
         return collect.stream().mapToInt(Map.Entry::getValue).sum();
-
     }
 
     public Integer getTotalBenefit() {
