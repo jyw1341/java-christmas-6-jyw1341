@@ -1,5 +1,6 @@
-package christmas.event;
+package christmas;
 
+import christmas.domain.Benefit;
 import christmas.enums.Badge;
 import christmas.enums.EventType;
 import org.junit.jupiter.api.DisplayName;

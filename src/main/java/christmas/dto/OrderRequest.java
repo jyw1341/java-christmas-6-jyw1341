@@ -1,4 +1,4 @@
-package christmas.order;
+package christmas.dto;
 
 import christmas.enums.Menu;
 import christmas.enums.MenuType;

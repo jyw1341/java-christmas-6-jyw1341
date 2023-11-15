@@ -1,4 +1,4 @@
-package christmas.event;
+package christmas.domain;
 
 import christmas.enums.Badge;
 import christmas.enums.EventType;

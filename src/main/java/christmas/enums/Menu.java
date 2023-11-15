@@ -1,6 +1,6 @@
 package christmas.enums;
 
-import static christmas.order.OrderRequest.ERROR_INVALID_MENU;
+import static christmas.dto.OrderRequest.ERROR_INVALID_MENU;
 
 public enum Menu {
 

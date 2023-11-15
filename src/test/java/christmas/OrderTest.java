@@ -1,19 +1,24 @@
-package christmas.order;
+package christmas;
 
+import christmas.domain.Orders;
+import christmas.dto.OrderRequest;
+import christmas.enums.Menu;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static christmas.order.OrderRequest.*;
+import static christmas.dto.OrderRequest.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class OrderRequestTest {
+
+class OrderTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1", "2", "3", "31"})
-    @DisplayName("날짜 입력이 1~31일에 해당하면 예외가 발생하지 않는다")
+    @DisplayName("주문날짜가 1~31일에 해당하면 예외가 발생하지 않는다")
     public void testSetDate1(String date) {
         OrderRequest orderRequest = new OrderRequest();
         assertDoesNotThrow(() -> {
@@ -23,7 +28,7 @@ class OrderRequestTest {
 
     @ParameterizedTest
     @ValueSource(strings = {" ", "", "0", "1.2", "-5", "a", "12ab", "ㅇㄴㅁㅇㄴ"})
-    @DisplayName("날짜 입력이 1이상 31 이하의 사이의 숫자가 아니면 예외")
+    @DisplayName("주문날짜가 1이상 31 이하의 사이의 숫자가 아니면 예외")
     public void testSetDate2(String date) {
         OrderRequest orderRequest = new OrderRequest();
         assertThatThrownBy(() -> {
@@ -104,5 +109,17 @@ class OrderRequestTest {
             orderRequest.setMenu(input); // Valid date input
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ERROR_OVER_MAX_ORDER);
+    }
+
+    @Test
+    @DisplayName("주문 메뉴의 할인전 가격 총합 구하는 테스트.")
+    void getTotalOrderAmount() {
+        OrderRequest orderRequest = new OrderRequest();
+        orderRequest.setMenu("바비큐립-1,시저샐러드-1,제로콜라-1");
+        orderRequest.setDate("25");
+        Orders order = new Orders(orderRequest.getDate(), orderRequest.getMenu());
+        int result = Menu.BBQ_RIBS.getPrice() + Menu.CAESAR_SALAD.getPrice() + Menu.ZERO_COKE.getPrice();
+
+        assertEquals(result, order.getTotalOrderAmount());
     }
 }

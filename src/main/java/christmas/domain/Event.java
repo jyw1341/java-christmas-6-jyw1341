@@ -1,10 +1,9 @@
-package christmas.event;
+package christmas.domain;
 
 import christmas.enums.DayOfWeek;
 import christmas.enums.EventType;
 import christmas.enums.Menu;
 import christmas.enums.MenuType;
-import christmas.order.Orders;
 
 import java.util.Date;
 import java.util.Map;

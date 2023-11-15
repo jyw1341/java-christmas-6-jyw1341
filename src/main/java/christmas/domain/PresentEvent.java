@@ -1,7 +1,6 @@
-package christmas.event;
+package christmas.domain;
 
 import christmas.enums.EventType;
-import christmas.order.Orders;
 
 public class PresentEvent extends Event {
 

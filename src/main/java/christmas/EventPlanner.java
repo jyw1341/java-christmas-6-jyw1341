@@ -1,7 +1,7 @@
-package christmas.event;
+package christmas;
 
+import christmas.domain.*;
 import christmas.enums.EventType;
-import christmas.order.Orders;
 
 import java.util.ArrayList;
 import java.util.EnumMap;

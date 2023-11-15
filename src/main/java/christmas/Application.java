@@ -1,9 +1,8 @@
 package christmas;
 
-import christmas.event.Benefit;
-import christmas.event.EventPlanner;
-import christmas.order.OrderRequest;
-import christmas.order.Orders;
+import christmas.domain.Benefit;
+import christmas.domain.Orders;
+import christmas.dto.OrderRequest;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 

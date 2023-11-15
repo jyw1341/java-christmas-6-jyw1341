@@ -1,10 +1,10 @@
 package christmas.view;
 
+import christmas.domain.Benefit;
+import christmas.domain.Orders;
 import christmas.enums.Badge;
 import christmas.enums.EventType;
 import christmas.enums.Menu;
-import christmas.event.Benefit;
-import christmas.order.Orders;
 
 import java.util.Date;
 import java.util.Map;

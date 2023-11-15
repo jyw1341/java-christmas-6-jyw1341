@@ -1,7 +1,7 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.order.OrderRequest;
+import christmas.dto.OrderRequest;
 
 import static christmas.view.Messages.*;
 

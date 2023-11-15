@@ -1,9 +1,8 @@
-package christmas.event;
+package christmas.domain;
 
 import christmas.enums.DayOfWeek;
 import christmas.enums.EventType;
 import christmas.enums.MenuType;
-import christmas.order.Orders;
 
 import static christmas.enums.DayOfWeek.SUNDAY;
 import static christmas.enums.DayOfWeek.THURSDAY;

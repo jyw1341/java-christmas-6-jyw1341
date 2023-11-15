@@ -1,8 +1,7 @@
-package christmas.event;
+package christmas.domain;
 
 import christmas.enums.DayOfWeek;
 import christmas.enums.EventType;
-import christmas.order.Orders;
 
 import java.util.Calendar;
 import java.util.Date;

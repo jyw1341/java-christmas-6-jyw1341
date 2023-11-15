@@ -1,15 +1,16 @@
-package christmas.event;
+package christmas;
 
+import christmas.domain.Benefit;
+import christmas.domain.Orders;
+import christmas.dto.OrderRequest;
 import christmas.enums.EventType;
-import christmas.order.OrderRequest;
-import christmas.order.Orders;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
 
-import static christmas.event.DdayEvent.D_DAY_BENEFIT;
+import static christmas.domain.DdayEvent.D_DAY_BENEFIT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class EventPlannerTest {
